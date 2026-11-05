@@ -1,0 +1,76 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: fix/updatego
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/EUDAT-B2HANDLE/pyhandle:
+      branch: master
+      repo: https://github.com/EUDAT-B2HANDLE/pyhandle
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/EUDAT-B2HANDLE/pyhandle git:
+        commands:
+        - /usr/bin/env sh .sqa/script.arctic_articulate_warthog.sh
+        container: qc.acc_ash_tranquil_ferret
+  QC.Doc:
+    repos:
+      github.com/EUDAT-B2HANDLE/pyhandle find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.periwinkle_decisive_quokka.sh
+        container: qc.doc_pink_curious_turtle
+      github.com/EUDAT-B2HANDLE/pyhandle git:
+        commands:
+        - /usr/bin/env sh .sqa/script.cerise_melancholy_chipmunk.sh
+        container: qc.doc_magenta_funny_cobra
+      github.com/EUDAT-B2HANDLE/pyhandle markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.espresso_attentive_emu.sh
+        container: qc.doc_butter_methodical_falcon
+      github.com/EUDAT-B2HANDLE/pyhandle restructuredtext-lint:
+        commands:
+        - /usr/bin/env sh .sqa/script.amaranth_rational_toad.sh
+        container: qc.doc_wave_bold_whale
+  QC.Lic:
+    repos:
+      github.com/EUDAT-B2HANDLE/pyhandle licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.pistachio_delighted_axolotl.sh
+        container: qc.lic_fog_artistic_barracuda
+  QC.Sec:
+    repos:
+      github.com/EUDAT-B2HANDLE/pyhandle bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.fern_carefree_frog.sh
+        container: qc.sec_cream_authentic_hare
+  QC.Sty:
+    repos:
+      github.com/EUDAT-B2HANDLE/pyhandle flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.cinnabar_zealous_thrush.sh
+        container: qc.sty_cobalt_curious_chipmunk
+      github.com/EUDAT-B2HANDLE/pyhandle hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.cadet_serene_barracuda.sh
+        container: qc.sty_currant_observant_ocelot
+      github.com/EUDAT-B2HANDLE/pyhandle jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.fuchsia_aware_serval.sh
+        container: qc.sty_porcelain_gracious_barracuda
+  QC.Uni:
+    repos:
+      github.com/EUDAT-B2HANDLE/pyhandle pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.mauve_resilient_penguin.sh
+        container: qc.uni_onyx_playful_bear
+  QC.Ver:
+    repos:
+      github.com/EUDAT-B2HANDLE/pyhandle get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.green_fair_chameleon.sh
+        container: qc.ver_raspberry_diplomatic_ibis
+timeout: 5400
